@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<style>
+		.game{
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			flex-direction: row;
+			border: 2px solid brown;
+			position: absolute;
+		    left: 50%;
+		    top: 25%;
+		    transform: translate(-50%, -50%);
+		    width: 340px;
+		    margin: 0px;
+		}
+
+		.my{
+			height: 33px;
+			width: 110px;
+			font-size: 20px;
+			align-items: center;
+			margin: 10px;
+			padding: 3px;
+			background-color: #522804;
+			color: #dfd8d8;
+			cursor: pointer;
+		}
+
+		.myteam{
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			flex-direction: column;
+			width: 170px;
+			border: 2px solid #ff4747;
+			height: 230px;
+
+		}
+
+		#oppso{
+			height: 33px;
+			width: 110px;
+			font-size: 20px;
+			align-items: center;
+			margin: 10px;
+			padding: 3px;
+			background-color: #bd5c08;
+			color: white;
+		}
+
+		.result{
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			flex-direction: column;
+			position: absolute;
+      		left: 50%;
+      		top: 60%;
+      		transform: translate(-50%, -50%);
+		}
+
+		#quit, #reset{
+			height: 30px;
+			width: 100px;
+			font-size: 18px;
+			background-color: #c51212;
+			color: white;
+			cursor: pointer;
+
+		}
+
+		.opp{
+			display: flex;
+			width: 170px;
+			border: 2px solid #ff4747;
+			flex-direction: column;
+			height: 230px;
+
+		}
+
+		.but{
+			position: absolute;
+      		left: 50%;
+      		top: 75%;
+      		transform: translate(-50%, -50%);
+		}
+
+		body{
+			background-color: #eaeaea;
+		}
+
+		.my:hover{
+			background-color: #884f1e;
+		}
+
+	</style>
+	<title>Stone paper</title>
+</head>
+<body>
+	<div class="game">
+		<div class="myteam">
+			<h2>You</h2>
+			<button class="my" id="s1" value="0" onclick="stone()">Stone</button>
+			<button class="my" id="s2" value="1" onclick="paper()">Paper</button>
+			<button class="my" id="s3" value="2" onclick="scissor()">Scissor</button>
+		</div>
+		<div class="opp">
+			<center>
+				<h2 style="margin-top: 21px;">Computer</h2>
+				<button id="oppso" style="margin-top: 50px;">Start</button>
+			</center>
+		</div>
+	</div>
+	<div class="result">
+		<h2 id="output" style="margin-top: 5px; color: red;">Welcome</h2>
+		<p id="myscore" style="margin-top: 8px; font-weight: bold; font-size:20px;">Your score : 0</p>
+		<p id="oppscore" style="margin-top: 5px; font-weight: bold; font-size:20px;">Computer score : 0</p>
+		<br>
+	</div>
+	<div class="but">
+		<button id="quit" onclick="quit()">Quit</button>
+		<button id="reset" onclick="reset()">Reset</button>
+	</div>
+
+	<script>
+
+		var myoption;
+		var score = 0;
+		var opp_score = 0;
+
+
+		function stone () {
+			myoption = document.getElementById('s1').value;
+			var option = Math.floor(Math.random() * 3);
+			console.log(option == myoption);
+			if (option == 2){
+				document.getElementById('output').innerHTML = "Win";
+				score = score + 10;
+				opp_score = opp_score - 5;
+			}
+			else if (option == 0){
+				score = score + 5;
+				opp_score = opp_score + 5;
+				document.getElementById('output').innerHTML = "Drawn";
+
+			}
+			else {
+				document.getElementById('output').innerHTML = "Loose";
+				score = score - 5;
+				opp_score = opp_score + 10;
+			}
+			document.getElementById('myscore').innerHTML = "your score : " + score;
+			document.getElementById('oppscore').innerHTML = "Computer Score : " + opp_score;
+			if (option == 0){
+				document.getElementById('oppso').innerHTML = "Stone";
+			}
+			else if (option == 1){
+				document.getElementById('oppso').innerHTML = "Paper";
+			}
+			else{
+				document.getElementById('oppso').innerHTML = "Scissor";
+			}
+		}
+
+
+		function paper () {
+			myoption = document.getElementById('s2').value;
+			var option = Math.floor(Math.random() * 3);
+			console.log(option);
+			if (option == 0){
+				document.getElementById('output').innerHTML = "Win";
+				score = score + 10;
+				opp_score = opp_score - 5;
+			}
+			else if (option == 1){
+				score = score + 5;
+				opp_score = opp_score + 5;
+				document.getElementById('output').innerHTML = "Drawn";
+
+			}
+			else {
+				document.getElementById('output').innerHTML = "Loose";
+				score = score - 5;
+				opp_score = opp_score + 10;
+			}
+			document.getElementById('myscore').innerHTML = "your score : " + score;
+			document.getElementById('oppscore').innerHTML = "Computer Score : " + opp_score;
+			if (option == 0){
+				document.getElementById('oppso').innerHTML = "Stone";
+			}
+			else if (option == 1){
+				document.getElementById('oppso').innerHTML = "Paper";
+			}
+			else {
+				document.getElementById('oppso').innerHTML = "Scissor";
+			}
+		}
+
+
+		function scissor () {
+			myoption = document.getElementById('s3').value;
+			var option = Math.floor(Math.random() * 3);
+			console.log(option);
+			if (option == 1){
+				document.getElementById('output').innerHTML = "Win";
+				score = score + 10;
+				opp_score = opp_score - 5;
+			}
+			else if (option == 2){
+				score = score + 5;
+				opp_score = opp_score + 5;
+				document.getElementById('output').innerHTML = "Drawn";
+
+			}
+			else {
+				document.getElementById('output').innerHTML = "Loose";
+				score = score - 5;
+				opp_score = opp_score + 10;
+			}
+			document.getElementById('myscore').innerHTML = "your score : " + score;
+			document.getElementById('oppscore').innerHTML = "Computer Score : " + opp_score;
+			if (option == 0){
+				document.getElementById('oppso').innerHTML = "Stone";
+			}
+			else if (option == 1){
+				document.getElementById('oppso').innerHTML = "Paper";
+			}
+			else{
+				document.getElementById('oppso').innerHTML = "Scissor";
+			}	
+		}
+
+
+		function quit () {
+			if (score > opp_score){
+				document.getElementById('output').innerHTML = "You winner";
+			}
+			else if (score == opp_score){
+				document.getElementById('output').innerHTML = "Game Draw";
+			}
+
+			else{
+				document.getElementById('output').innerHTML = "Computer Winner";
+			}
+			document.getElementById('myscore').innerHTML = "Your Total score : " + score;
+			document.getElementById('oppscore').innerHTML = "Computer Total Score : " + opp_score;
+		}
+
+
+		function reset () {
+			score = 0;
+			opp_score = 0;
+			document.getElementById('myscore').innerHTML = "Your score : " + score;
+			document.getElementById('oppscore').innerHTML = "Computer Score : " + opp_score;
+			document.getElementById('output').innerHTML = "";
+			document.getElementById('oppso').innerHTML = "Start";
+		}
+	</script>
+</body>
+</html>
